@@ -36,7 +36,7 @@ DIRECTORIES = {
 
 #The path of the directory to be sorted
 #edit this to where you placed your test-file folder
-path = '<YOUR_PATH>'
+path = '/Users/marin/github/File-organizer/file-organizer/test-file'
 
 #Creates a list with the filenames in the directory
 list_ = os.listdir(path)
@@ -47,7 +47,8 @@ for file_ in list_:
     ##START CODING HERE
 
     # 1. Create variables name and ext and set them to the file_'s name and extention
-
+    name = os.getcwd()
+    ext = os.path.splitext(file_)
     #Checks if there is no extension
     #If the extension variable is empty, moves onto the next iteration
     if ext == '':
