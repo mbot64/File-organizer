@@ -46,26 +46,45 @@ for file_ in list_:
 
     ##START CODING HERE
 
-    # 1. Create variables name and ext and set them to the file_'s name and extention
-    name = os.getcwd()
-    ext = os.path.splitext(file_)
+    # 1. Create variable's name and ext and set them to the file_'s name and extention
+    name = os.path.splitext(file_)[0]
+    ext = os.path.splitext(file_)[1]
     #Checks if there is no extension
     #If the extension variable is empty, moves onto the next iteration
     if ext == '':
         continue
+    #print(name + ' ' + ext)
 
     # 2. Loop through DIRECTORIES
+    for directory_name, ext_list in DIRECTORIES.items():
 
         # 3. If the extension is in one of the lists
+        #print(directory)
+        if ext in ext_list:
+            #print('Yes it is in ' + directory_name)
 
             # 4. Check if the key is a folder in the current directory already
-
+            if os.path.exists(path + "/" + directory_name):
                 # 5. If the key is already a folder in the directory,
                 # move the file into that directory using shutil.move
+                source = path + "/" + file_
+                destination = path + "/" + directory_name + "/" + file_
+                shutil.move(source, destination)
 
             # 6. If the folder is not in the current directory already,
             # create the folder
+            else:
+                #print("Create folder " + directory_name)
+                os.mkdir(path + "/" + directory_name)
+
 
                 # 7. Move the file into that directory using shutil.move
+                #print(path + "/" + file_)
+                source = path + "/" + file_
+                destination = path + "/" + directory_name + "/" + file_
+                shutil.move(source, destination)
+
 
         # 8. Else, continue to the next iteration
+        else:
+            continue
